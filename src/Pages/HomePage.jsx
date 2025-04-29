@@ -1,9 +1,10 @@
-
+import Buttonn from '../Components/Button';
 import Navbar from '../Components/NavigationBar';
 function HomePage() {
   return (
     <>
     <Navbar />
+    <Buttonn />
     <div style={{
       width: "100%", 
       height: "100vh",
