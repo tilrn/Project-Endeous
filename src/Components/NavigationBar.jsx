@@ -13,6 +13,7 @@ function NavigationBar() {
           <Nav.Link as={Link} to="/projects" className="mx-3">Projects</Nav.Link>
           <Nav.Link as={Link} to="/gallery" className="mx-3">Gallery</Nav.Link>
           <Nav.Link as={Link} to="/contacts" className="mx-3">Contacts</Nav.Link>
+          <Nav.Link as={Link} to="/mystory" className="mx-3">MyStory</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

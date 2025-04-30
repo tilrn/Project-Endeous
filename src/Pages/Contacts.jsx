@@ -1,13 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
-import ButtonSwitch from "../Components/Button";
+
+import NavigationBar from '../Components/NavigationBar';
 
 function Contacts() {
   return (
 
     <>
-    <ButtonSwitch />
+    <NavigationBar />
+
     
     <Container className="my-5" style={{ maxWidth: '700px' }}>
       <h2 className="mb-4 text-center">Contact Us</h2>
