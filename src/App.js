@@ -6,6 +6,7 @@ import Projects from '../src/Pages/Projects';
 import Gallery from '../src/Pages/Gallery';
 import Contacts from '../src/Pages/Contacts';
 import MyStory from '../src/Pages/MyStory';
+import Store from '../src/Pages/Store'; 
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/mystory" element={<MyStory />} />
+        <Route path="/store" element={<Store />} />
       </Routes>
     </Router>
   );

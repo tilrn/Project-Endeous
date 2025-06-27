@@ -1,0 +1,101 @@
+.home-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.quote-container {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  max-width: 400px;
+  text-align: left;
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-quote {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+  font-family: serif;
+  color: #333;
+}
+
+.quote-author {
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-family: serif;
+  color: #666;
+}
+
+.poem-text {
+  font-style: italic;
+  line-height: 1.6;
+  font-size: 16px;
+  font-family: sans-serif;
+  color: #444;
+}
+
+@media (max-width: 1200px) {
+  .quote-container {
+    left: 10%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quote-container {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    padding: 1.5rem;
+  }
+
+  .main-quote {
+    font-size: 24px;
+  }
+
+  .poem-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quote-container {
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  .main-quote {
+    font-size: 20px;
+  }
+} 

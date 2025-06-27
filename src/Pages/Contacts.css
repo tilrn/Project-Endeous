@@ -1,0 +1,90 @@
+.toggle-button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  display: block;
+  border-radius: 5px;
+}
+
+.toggle-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.toggle-button:hover::after {
+  left: 100%;
+}
+
+.content-section {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+.content-section.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  height: auto;
+  overflow: visible;
+}
+
+.content-container {
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+}
+
+.social-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.social-link:hover {
+  color: #007bff;
+}
+
+.social-icon {
+  margin-right: 10px;
+  font-size: 24px;
+  min-width: 24px;
+}
+
+.social-link span {
+  text-align: left;
+  flex: 1;
+} 
