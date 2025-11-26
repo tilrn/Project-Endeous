@@ -1,5 +1,7 @@
 .store-container {
   padding: 2rem;
+  background-color: white;
+  min-height: 100vh;
 }
 
 /* New Items Carousel */
@@ -184,4 +186,93 @@
   .modal-nav-button.next {
     right: -12px !important;
   }
+}
+
+/* Carousel arrow styles */
+.slick-prev,
+.slick-next {
+  width: 24px !important;
+  height: 24px !important;
+  background: white !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+  z-index: 1;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: white !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 18px !important;
+  opacity: 0.85 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+.slick-prev {
+  left: 10px !important;
+}
+
+.slick-next {
+  right: 10px !important;
+}
+
+/* Splash Screen Styles */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.splash-content {
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+.splash-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.loading-progress {
+  height: 100%;
+  background: #ffffff;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.splash-content p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0;
+  color: #cccccc;
 } 

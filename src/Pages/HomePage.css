@@ -1,9 +1,8 @@
 .home-container {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   position: relative;
+  width: 100%;
+  height: calc(100vh - 48px);
+  overflow: hidden;
 }
 
 .background-container {
@@ -13,10 +12,12 @@
 }
 
 .background-image {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  object-position: center 10%; /* Adjust this value to move the image down */
+  z-index: -1;
 }
 
 .content-overlay {
@@ -26,13 +27,13 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .quote-container {
-  position: absolute;
-  top: 50%;
+  position: relative;
   left: 15%;
-  transform: translateY(-50%);
   max-width: 400px;
   text-align: left;
   pointer-events: auto;
@@ -75,7 +76,7 @@
 @media (max-width: 768px) {
   .quote-container {
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     max-width: 80%;
     padding: 1.5rem;
   }
@@ -90,6 +91,10 @@
 }
 
 @media (max-width: 480px) {
+  .home-container {
+    height: calc(100vh - 56px); /* Adjust for mobile navbar */
+  }
+
   .quote-container {
     max-width: 90%;
     padding: 1rem;

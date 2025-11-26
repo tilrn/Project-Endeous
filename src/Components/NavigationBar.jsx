@@ -1,23 +1,24 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import '../Components/Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function NavigationBar() {
+  const location = useLocation();
   return (
-    <Navbar expand="lg" variant="dark" bg="dark" className="mb-3">
-      <Container>
-        <Nav className="me-auto mx-auto">
-          <Nav.Link as={Link} to="/" className="mx-3">Home</Nav.Link>
-          <Nav.Link as={Link} to="/projects" className="mx-3">Purpose</Nav.Link>
-          <Nav.Link as={Link} to="/gallery" className="mx-3">Creations</Nav.Link>
-          <Nav.Link as={Link} to="/contacts" className="mx-3">Contacts</Nav.Link>
-          <Nav.Link as={Link} to="/mystory" className="mx-3">MyStory</Nav.Link>
-          <Nav.Link as={Link} to="/store" className="mx-3">Store</Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <nav className="custom-navbar">
+      <div className="navbar-inner">
+        <Link to="/" className="navbar-logo">
+          <img src="/img/origiLogo.png" alt="Project Endeous" className="logo-image" />
+        </Link>
+        <div className="nav-links">
+          <Link to="/" className={`nav-link${location.pathname === '/' ? ' active-link' : ''}`}>Home</Link>
+          <Link to="/projects" className={`nav-link${location.pathname === '/projects' ? ' active-link' : ''}`}>Purpose</Link>
+          <Link to="/gallery" className={`nav-link${location.pathname === '/gallery' ? ' active-link' : ''}`}>Creations</Link>
+          <Link to="/contacts" className={`nav-link${location.pathname === '/contacts' ? ' active-link' : ''}`}>Contacts</Link>
+          <Link to="/mystory" className={`nav-link${location.pathname === '/mystory' ? ' active-link' : ''}`}>MyStory</Link>
+          <Link to="/store" className={`nav-link${location.pathname === '/store' ? ' active-link' : ''}`}>Store</Link>
+        </div>
+      </div>
+    </nav>
   );
 }
 

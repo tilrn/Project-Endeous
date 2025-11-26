@@ -1,53 +1,90 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Row, Col } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 import NavigationBar from '../Components/NavigationBar';
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaCoffee, FaEnvelope } from 'react-icons/fa';
 import './Contacts.css';
-import { FaInstagram, FaYoutube, FaEnvelope, FaCoffee } from 'react-icons/fa';
 
 function Contacts() {
   const [showContactForm, setShowContactForm] = useState(false);
 
-  const toggleContent = () => {
-    setShowContactForm(!showContactForm);
+  const handleToggle = () => {
+    setShowContactForm((prev) => !prev);
   };
 
   return (
     <>
       <NavigationBar />
-      <Container>
-        <button className="toggle-button" onClick={toggleContent}>
-          {showContactForm ? 'View Social Media' : 'View Contact Form'}
-        </button>
+      <Container className="contacts-container" style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+        <div className="toggle-container">
+          <label className="toggle-switch">
+            <input
+              type="checkbox"
+              checked={showContactForm}
+              onChange={handleToggle}
+            />
+            <span className="toggle-slider"></span>
+          </label>
+          <div className="toggle-labels">
+            {/* Optionally add labels here */}
+          </div>
+        </div>
 
         <div className="content-container">
-          <div className={`content-section ${!showContactForm ? 'active' : ''}`}>
+          {/* Connect With Me Section */}
+          <div
+            className="content-section"
+            style={{
+              transform: showContactForm ? 'translateX(100%)' : 'translateX(0)',
+              opacity: showContactForm ? 0 : 1,
+              zIndex: showContactForm ? 1 : 2,
+              transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1)',
+              position: 'absolute',
+              width: '100%',
+            }}
+          >
             <Container className="my-5" style={{ maxWidth: '700px' }}>
               <h2 className="mb-4 text-center">Connect With Me</h2>
               <div className="social-links-container">
                 <a href="https://ko-fi.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <FaCoffee className="social-icon" />
-                  <span>Support me on Ko-fi</span>
+                  <span>Buy me a coffee</span>
                 </a>
-
+                <a href="https://facebook.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF className="social-icon" />
+                  <span>Facebook</span>
+                </a>
                 <a href="https://instagram.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <FaInstagram className="social-icon" />
-                  <span>@yourname</span>
+                  <span>Instagram</span>
                 </a>
-
-                <a href="https://youtube.com/@yourchannel" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaYoutube className="social-icon" />
-                  <span>YouTube Channel</span>
+                <a href="https://twitter.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter className="social-icon" />
+                  <span>Twitter</span>
                 </a>
-
-                <a href="mailto:your.email@gmail.com" className="social-link">
+                <a href="https://linkedin.com/in/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedinIn className="social-icon" />
+                  <span>LinkedIn</span>
+                </a>
+                <a href="mailto:your.email@example.com" className="social-link">
                   <FaEnvelope className="social-icon" />
-                  <span>your.email@gmail.com</span>
+                  <span>Email Me</span>
                 </a>
               </div>
             </Container>
           </div>
 
-          <div className={`content-section ${showContactForm ? 'active' : ''}`}>
+          {/* Contact Us Section */}
+          <div
+            className="content-section"
+            style={{
+              transform: showContactForm ? 'translateX(0)' : 'translateX(-100%)',
+              opacity: showContactForm ? 1 : 0,
+              zIndex: showContactForm ? 2 : 1,
+              transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1)',
+              position: 'absolute',
+              width: '100%',
+            }}
+          >
             <Container className="my-5" style={{ maxWidth: '700px' }}>
               <h2 className="mb-4 text-center">Contact Us</h2>
               <Form>
