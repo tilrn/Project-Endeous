@@ -1,5 +1,6 @@
 import React from 'react';
 import NavigationBar from '../Components/NavigationBar';
+import Footer from '../Components/Footer';
 import "./MyStory.css";
 
 const MyStory = () => { 
@@ -18,6 +19,7 @@ const MyStory = () => {
                     </section>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

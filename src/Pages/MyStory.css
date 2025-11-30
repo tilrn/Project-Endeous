@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
 
+@font-face {
+  font-family: 'High Tower Text';
+  src: local('High Tower Text Italic'), 
+       local('HIGHTOW.TTF'),
+       local('HTOWITI.TTF');
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,28 +22,29 @@ a {
 }
 
 body {
-    background-color: #2a2a2a;
+    background-color: #000;
     color: #e5e5e5;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
 }
 
 /* Page Layout */
-
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 20px;
+    padding-top: 5rem;
+    background-color: #000;
+    min-height: calc(100vh - 56px);
 }
 
 /* Header */
-
-header{
+header {
     color: #898989;
     padding: 20px 0;
     margin-bottom: 40px;
     text-transform: uppercase;
-    border-bottom: 2px solid #cccccc;
+    border-bottom: 2px solid #333;
     display: flex;
     justify-content: space-between;
 }
@@ -59,7 +70,6 @@ header button {
 }
 
 /* Main Section */
-
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -68,6 +78,7 @@ header button {
 .main {
     position: relative;
     padding: 20px;
+    color: #e5e5e5;
 }
 
 .main h2 {
@@ -77,16 +88,45 @@ header button {
 }
 
 .main p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 24pt;
+    line-height: 1.8;
     margin-bottom: 1rem;
     margin-left: 120px;
+    font-family: 'High Tower Text', serif;
+    font-style: italic;
+    background: 
+        radial-gradient(circle at 30% 50%, 
+            #ff69b4 0%, 
+            #ffffff 15%, 
+            #4a90e2 30%, 
+            transparent 50%),
+        radial-gradient(circle at 70% 50%, 
+            #ff8c00 0%, 
+            #ffffff 20%, 
+            #00bfff 40%, 
+            transparent 60%),
+        linear-gradient(135deg, 
+            #ff1493 0%, 
+            #ffffff 10%, 
+            #4a90e2 20%, 
+            #ffffff 30%, 
+            #ff8c00 40%, 
+            #ffffff 50%, 
+            #ff6347 60%, 
+            #ffffff 70%, 
+            #00bfff 80%, 
+            #ffffff 90%, 
+            #ff69b4 100%);
+    background-size: 150% 150%, 150% 150%, 100% 100%;
+    background-position: 0% 0%, 100% 100%, center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .circle {
     width: 300px;
     height: 300px;
-
     float: right;
     border-radius: 50%;
     shape-outside: circle(50%);
@@ -97,7 +137,6 @@ header button {
 }
 
 /* Sidebar */
-
 .logo {
   font-size: 2rem;
   margin-right: 1.5rem;
@@ -112,22 +151,66 @@ header button {
     }
 
     .main p {
-        font-size: 1.1rem;
+        font-size: 22pt;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 4rem 1rem 2rem;
+    }
+
+    .main p {
+        margin-left: 0;
+        font-size: 20pt;
+    }
+
+    .circle {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+        width: 250px;
+        height: 250px;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 15px;
+        padding: 4rem 15px 2rem;
     }
 
     .circle {
-        width: 200px;
-        height: 200px;
-        margin: 0 0 15px 15px;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 15px;
+    }
+
+    .main {
+        padding: 10px;
     }
 
     .main p {
-        font-size: 0.95rem;
+        font-size: 16pt;
+        margin-left: 0;
+        line-height: 1.6;
+    }
+
+    .main h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 4rem 10px 1.5rem;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .main p {
+        font-size: 14pt;
     }
 }

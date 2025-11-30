@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavigationBar from '../Components/NavigationBar';
+import Footer from '../Components/Footer';
 import './Purpose.css';
 
 function Projects() {
@@ -31,6 +32,7 @@ function Projects() {
           className="video-frame"
         ></iframe>
       </div>
+      <Footer />
     </>
   );
 }

@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import "react-photo-album/styles.css"; // if required
-import NavigationBar from './Components/NavigationBar';
 import Home from '../src/Pages/HomePage';
 import Purpose from '../src/Pages/Purpose';
 import Gallery from '../src/Pages/Gallery';

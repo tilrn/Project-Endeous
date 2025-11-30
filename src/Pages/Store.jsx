@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import NavigationBar from '../Components/NavigationBar';
-import Slider from 'react-slick';
+import Footer from '../Components/Footer';
 import { Modal, IconButton } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import './Store.css';
 
-// Sample data for new items carousel
-const newItems = [
-  { id: 1, image: '/img/lorem-4961251_1280.jpg', name: 'New Product 1' },
-  { id: 2, image: '/img/lorem-4920219_1280.jpg', name: 'New Product 2' },
-  { id: 3, image: '/img/lorem-4995945_1280.jpg', name: 'New Product 3' },
-  { id: 4, image: '/img/lorem-4951629_1280.jpg', name: 'New Product 4' },
-  { id: 5, image: '/img/lorem-4961138_1280.jpg', name: 'New Product 5' },
-  { id: 6, image: '/img/lorem-4992299_1280.jpg', name: 'New Product 6' },
-  { id: 7, image: '/img/lorem-4920209_1280.jpg', name: 'New Product 7' },
-  { id: 8, image: '/img/lorem-4977985_1280.jpg', name: 'New Product 8' },
-  { id: 9, image: '/img/lorem-4873425_1280.jpg', name: 'New Product 9' },
-  { id: 10, image: '/img/lorem-5006124_1280.jpg', name: 'New Product 10' },
-];
 
 // Sample data for products
 const products = [
@@ -91,65 +76,6 @@ const products = [
   }
 ];
 
-const storeItems = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: "$19.99",
-    image: "https://picsum.photos/300/300?random=1",
-    description: "Description for Product 1"
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: "$29.99",
-    image: "https://picsum.photos/300/300?random=2",
-    description: "Description for Product 2"
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    price: "$39.99",
-    image: "https://picsum.photos/300/300?random=3",
-    description: "Description for Product 3"
-  },
-  {
-    id: 4,
-    name: "Product 4",
-    price: "$24.99",
-    image: "https://picsum.photos/300/300?random=4",
-    description: "Description for Product 4"
-  },
-  {
-    id: 5,
-    name: "Product 5",
-    price: "$34.99",
-    image: "https://picsum.photos/300/300?random=5",
-    description: "Description for Product 5"
-  },
-  {
-    id: 6,
-    name: "Product 6",
-    price: "$44.99",
-    image: "https://picsum.photos/300/300?random=6",
-    description: "Description for Product 6"
-  },
-  {
-    id: 7,
-    name: "Product 7",
-    price: "$49.99",
-    image: "https://picsum.photos/300/300?random=7",
-    description: "Description for Product 7"
-  },
-  {
-    id: 8,
-    name: "Product 8",
-    price: "$54.99",
-    image: "https://picsum.photos/300/300?random=8",
-    description: "Description for Product 8"
-  }
-];
-
 function Store() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -160,10 +86,8 @@ function Store() {
 
   // Calculate total images to load
   useEffect(() => {
-    const newItemsImages = newItems.length;
     const productsImages = products.reduce((total, product) => total + product.images.length, 0);
-    const total = newItemsImages + productsImages;
-    setTotalImages(total);
+    setTotalImages(productsImages);
   }, []);
 
   // Function to handle image load
@@ -198,14 +122,6 @@ function Store() {
     }, 8000);
 
     const preloadImages = () => {
-      // Preload new items images
-      newItems.forEach(item => {
-        const img = new Image();
-        img.onload = handleImageLoad;
-        img.onerror = handleImageError;
-        img.src = item.image;
-      });
-
       // Preload product images
       products.forEach(product => {
         product.images.forEach(imageUrl => {
@@ -222,29 +138,6 @@ function Store() {
     return () => clearTimeout(timeout);
   }, [totalImages]);
 
-  const carouselSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        }
-      }
-    ]
-  };
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
@@ -288,18 +181,6 @@ function Store() {
         </div>
       ) : (
         <div className="store-container">
-          {/* New Items Carousel */}
-          <div className="new-items-carousel">
-            <h2 className="carousel-title">New Arrivals</h2>
-            <Slider {...carouselSettings}>
-              {newItems.map((item) => (
-                <div key={item.id}>
-                  <img src={item.image} alt={item.name} />
-                </div>
-              ))}
-            </Slider>
-          </div>
-
           {/* Store Title */}
           <h2 className="store-title">Store</h2>
 
@@ -365,6 +246,7 @@ function Store() {
           </Modal>
         </div>
       )}
+      <Footer />
     </>
   );
 }

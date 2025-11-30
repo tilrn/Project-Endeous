@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, TextField, Button, Box } from '@mui/material';
 import NavigationBar from '../Components/NavigationBar';
-import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaCoffee, FaEnvelope } from 'react-icons/fa';
+import Footer from '../Components/Footer';
+import { FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import './Contacts.css';
 
 function Contacts() {
@@ -14,8 +15,25 @@ function Contacts() {
   return (
     <>
       <NavigationBar />
-      <Container className="contacts-container" style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+      <div className="contacts-page-wrapper">
+        <div className="contacts-background">
+          <img 
+            src="/img/PE - Contact - Background.png" 
+            alt="Contact Background" 
+            className="contacts-bg-image"
+          />
+        </div>
+        <div className="contacts-container">
+          <div className="contacts-header">
+          <h1>Contact</h1>
+          <p>Let's connect and create something beautiful together</p>
+        </div>
+
         <div className="toggle-container">
+          <div className="toggle-labels">
+            <span className={!showContactForm ? 'active' : ''}>Connect</span>
+            <span className={showContactForm ? 'active' : ''}>Message</span>
+          </div>
           <label className="toggle-switch">
             <input
               type="checkbox"
@@ -24,9 +42,6 @@ function Contacts() {
             />
             <span className="toggle-slider"></span>
           </label>
-          <div className="toggle-labels">
-            {/* Optionally add labels here */}
-          </div>
         </div>
 
         <div className="content-container">
@@ -42,20 +57,23 @@ function Contacts() {
               width: '100%',
             }}
           >
-            <Container className="my-5" style={{ maxWidth: '700px' }}>
-              <h2 className="mb-4 text-center">Connect With Me</h2>
+            <Container maxWidth="md">
               <div className="social-links-container">
                 <a href="https://ko-fi.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaCoffee className="social-icon" />
+                  <img src="/img/Pe - Contact - Kofi.png" alt="Ko-fi" className="social-icon-img" />
                   <span>Buy me a coffee</span>
                 </a>
-                <a href="https://facebook.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaFacebookF className="social-icon" />
-                  <span>Facebook</span>
-                </a>
                 <a href="https://instagram.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaInstagram className="social-icon" />
+                  <img src="/img/Pe - Contact - Insta.png" alt="Instagram" className="social-icon-img" />
                   <span>Instagram</span>
+                </a>
+                <a href="https://youtube.com/@yourname" className="social-link" target="_blank" rel="noopener noreferrer">
+                  <img src="/img/Pe - Contact - Yt.png" alt="YouTube" className="social-icon-img" />
+                  <span>YouTube</span>
+                </a>
+                <a href="mailto:your.email@example.com" className="social-link">
+                  <img src="/img/Pe - Contact - Mail.png" alt="Email" className="social-icon-img" />
+                  <span>Email Me</span>
                 </a>
                 <a href="https://twitter.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <FaTwitter className="social-icon" />
@@ -64,10 +82,6 @@ function Contacts() {
                 <a href="https://linkedin.com/in/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <FaLinkedinIn className="social-icon" />
                   <span>LinkedIn</span>
-                </a>
-                <a href="mailto:your.email@example.com" className="social-link">
-                  <FaEnvelope className="social-icon" />
-                  <span>Email Me</span>
                 </a>
               </div>
             </Container>
@@ -85,34 +99,52 @@ function Contacts() {
               width: '100%',
             }}
           >
-            <Container className="my-5" style={{ maxWidth: '700px' }}>
-              <h2 className="mb-4 text-center">Contact Us</h2>
-              <Form>
-                <Form.Group controlId="formName" className="mb-3">
-                  <Form.Label>Your Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your name" />
-                </Form.Group>
-
-                <Form.Group controlId="formEmail" className="mb-3">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter your email" />
-                </Form.Group>
-
-                <Form.Group controlId="formMessage" className="mb-3">
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control as="textarea" rows={5} placeholder="Your message" />
-                </Form.Group>
-
-                <div className="text-center">
-                  <Button variant="primary" type="submit">
+            <Container maxWidth="md">
+              <div className="contact-form-wrapper">
+                <h2 className="form-title">Send a Message</h2>
+                <Box
+                  component="form"
+                  className="contact-form"
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                  }}
+                >
+                <TextField
+                  fullWidth
+                  label="Your Name"
+                  placeholder="Enter your name"
+                  variant="outlined"
+                />
+                <TextField
+                  fullWidth
+                  type="email"
+                  label="Email address"
+                  placeholder="Enter your email"
+                  variant="outlined"
+                />
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={5}
+                  label="Message"
+                  placeholder="Your message"
+                  variant="outlined"
+                />
+                <Box sx={{ textAlign: 'center', mt: 2 }}>
+                  <Button variant="contained" type="submit" size="large">
                     Send Message
                   </Button>
-                </div>
-              </Form>
+                </Box>
+                </Box>
+              </div>
             </Container>
           </div>
         </div>
-      </Container>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

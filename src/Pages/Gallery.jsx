@@ -1,218 +1,152 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import NavigationBar from '../Components/NavigationBar';
-import { DndContext, useDraggable } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
+import Footer from '../Components/Footer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Modal } from '@mui/material';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './Gallery.css';
 
-// Sample images - replace with your actual images
-const images = [
-  { id: 1, url: '/img/lorem-4961251_1280.jpg', width: 300, height: 200 },
-  { id: 2, url: '/img/lorem-4920219_1280.jpg', width: 250, height: 300 },
-  { id: 3, url: '/img/lorem-4995945_1280.jpg', width: 280, height: 250 },
-  { id: 4, url: '/img/lorem-4951629_1280.jpg', width: 320, height: 220 },
-  { id: 5, url: '/img/lorem-4961138_1280.jpg', width: 270, height: 270 },
-  { id: 6, url: '/img/lorem-4992299_1280.jpg', width: 290, height: 240 },
-  { id: 7, url: '/img/lorem-4920209_1280.jpg', width: 310, height: 280 },
-  { id: 8, url: '/img/lorem-4977985_1280.jpg', width: 260, height: 260 },
+// Sample images for carousel - replace with your actual images
+const creationImages = [
+  { id: 1, url: '/img/lorem-4961251_1280.jpg', name: 'Creation 1' },
+  { id: 2, url: '/img/lorem-4920219_1280.jpg', name: 'Creation 2' },
+  { id: 3, url: '/img/lorem-4995945_1280.jpg', name: 'Creation 3' },
+  { id: 4, url: '/img/lorem-4951629_1280.jpg', name: 'Creation 4' },
+  { id: 5, url: '/img/lorem-4961138_1280.jpg', name: 'Creation 5' },
+  { id: 6, url: '/img/lorem-4992299_1280.jpg', name: 'Creation 6' },
+  { id: 7, url: '/img/lorem-4920209_1280.jpg', name: 'Creation 7' },
+  { id: 8, url: '/img/lorem-4977985_1280.jpg', name: 'Creation 8' },
+  { id: 9, url: '/img/lorem-4873425_1280.jpg', name: 'Creation 9' },
+  { id: 10, url: '/img/lorem-5006124_1280.jpg', name: 'Creation 10' },
 ];
 
-// Skeleton component for loading state
-function ImageSkeleton({ width, height, position }) {
-  const isMobile = window.innerWidth <= 768;
-  const scale = isMobile ? 0.7 : 1;
-
-  const style = {
-    width: width * scale,
-    height: height * scale,
-    position: 'absolute',
-    left: position.x,
-    top: position.y,
-    backgroundColor: '#f0f0f0',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    animation: 'pulse 1.5s ease-in-out infinite',
-  };
-
-  return <div style={style} className="image-skeleton" />;
-}
-
-function DraggableImage({ id, url, width, height, position, onImageClick, onImageLoad, isLoaded }) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: id,
-  });
-
-  const isMobile = window.innerWidth <= 768;
-  const scale = isMobile ? 0.7 : 1;
-
-  const style = {
-    width: width * scale,
-    height: height * scale,
-    position: 'absolute',
-    left: position.x,
-    top: position.y,
-    transform: CSS.Translate.toString(transform),
-    cursor: 'move',
-    zIndex: transform ? 1000 : 1,
-    opacity: isLoaded ? 1 : 0, // Hide until loaded
-  };
-
-  const handleClick = (e) => {
-    if (!transform) {
-      onImageClick(url);
-    }
-  };
-
-  const handleLoad = () => {
-    onImageLoad(id);
-  };
-
-  return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      <img
-        src={url}
-        alt={`Creation ${id}`}
-        onClick={handleClick}
-        onLoad={handleLoad}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          cursor: transform ? 'move' : 'pointer'
-        }}
-      />
-    </div>
-  );
-}
+// Artworks grid data - replace with your actual artworks
+const artworks = [
+  { id: 1, url: '/img/lorem-4961251_1280.jpg', name: 'Sunset Dreams', technique: 'Oil on Canvas' },
+  { id: 2, url: '/img/lorem-4920219_1280.jpg', name: 'Ocean Whispers', technique: 'Watercolor' },
+  { id: 3, url: '/img/lorem-4995945_1280.jpg', name: 'Forest Light', technique: 'Acrylic' },
+  { id: 4, url: '/img/lorem-4951629_1280.jpg', name: 'Urban Shadows', technique: 'Digital Art' },
+  { id: 5, url: '/img/lorem-4961138_1280.jpg', name: 'Morning Mist', technique: 'Mixed Media' },
+  { id: 6, url: '/img/lorem-4992299_1280.jpg', name: 'Golden Hour', technique: 'Photography' },
+];
 
 function Gallery() {
-  const [positions, setPositions] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [loadedImages, setLoadedImages] = useState(new Set());
-
-  // Function to check if two rectangles overlap
-  const isOverlapping = (rect1, rect2) => {
-    return !(rect1.x + rect1.width < rect2.x ||
-             rect1.x > rect2.x + rect2.width ||
-             rect1.y + rect1.height < rect2.y ||
-             rect1.y > rect2.y + rect2.height);
-  };
-
-  // Function to generate random position for an image
-  const generateRandomPosition = (width, height, existingPositions) => {
-    const isMobile = window.innerWidth <= 768;
-    const scale = isMobile ? 0.7 : 1;
-    const padding = 20;
-    const containerWidth = window.innerWidth - (width * scale) - padding;
-    const containerHeight = window.innerHeight - (height * scale) - padding - 56;
-
-    let attempts = 0;
-    let maxAttempts = 100;
-    let newPosition;
-
-    do {
-      newPosition = {
-        x: Math.random() * containerWidth,
-        y: Math.random() * containerHeight + 56,
-        width: width * scale,
-        height: height * scale
-      };
-      attempts++;
-
-      const hasOverlap = Object.values(existingPositions).some(pos => 
-        isOverlapping(newPosition, pos)
-      );
-
-      if (!hasOverlap || attempts >= maxAttempts) {
-        return newPosition;
-      }
-    } while (attempts < maxAttempts);
-
-    return newPosition;
-  };
-
-  // Initialize random positions for all images
-  useEffect(() => {
-    const handleResize = () => {
-      const newPositions = {};
-      images.forEach(image => {
-        newPositions[image.id] = generateRandomPosition(
-          image.width,
-          image.height,
-          newPositions
-        );
-      });
-      setPositions(newPositions);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const handleDragEnd = (event) => {
-    const { active, delta } = event;
-    const id = active.id;
-
-    setPositions(prev => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        x: prev[id].x + delta.x,
-        y: prev[id].y + delta.y
-      }
-    }));
-  };
-
-  const handleImageLoad = (imageId) => {
-    setLoadedImages(prev => new Set([...prev, imageId]));
-  };
+  const [selectedImage, setSelectedImage] = React.useState(null);
 
   return (
     <>
       <NavigationBar />
-      <DndContext onDragEnd={handleDragEnd}>
-        <div className="gallery-container">
-          {images.map((image) => {
-            const isLoaded = loadedImages.has(image.id);
-            return positions[image.id] ? (
-              <div key={image.id} style={{ position: 'relative' }}>
-                <DraggableImage
-                  {...image}
-                  position={positions[image.id]}
-                  onImageClick={setSelectedImage}
-                  onImageLoad={handleImageLoad}
-                  isLoaded={isLoaded}
-                />
-                {!isLoaded && (
-                  <ImageSkeleton
-                    width={image.width}
-                    height={image.height}
-                    position={positions[image.id]}
-                  />
-                )}
-              </div>
-            ) : null;
-          })}
+      <div className="gallery-page-wrapper">
+        <div className="gallery-background">
+          <img 
+            src="/img/Background Creations.png" 
+            alt="Creations Background" 
+            className="gallery-bg-image"
+          />
         </div>
-      </DndContext>
+        <div className="gallery-page-container">
+          <div className="gallery-header">
+            <h1>Creations</h1>
+            <p>Explore my creative works</p>
+          </div>
+
+          <div className="creations-carousel-container">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
+            speed={500}
+            className="creations-swiper"
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 25,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 30,
+              },
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 30,
+              },
+              1536: {
+                slidesPerView: 5,
+                spaceBetween: 30,
+              },
+            }}
+          >
+            {creationImages.map((image) => (
+              <SwiperSlide key={image.id} className="creation-slide">
+                <div className="creation-slide-wrapper" onClick={() => setSelectedImage(image.url)}>
+                  <img
+                    src={image.url}
+                    alt={image.name}
+                    className="creation-image"
+                  />
+                  <div className="creation-overlay">
+                    <span className="creation-name">{image.name}</span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+          {/* Artworks Grid Section */}
+          <div className="artworks-section">
+            <h2 className="artworks-title">Artwork Gallery</h2>
+            <div className="artworks-grid">
+              {artworks.map((artwork) => (
+                <div key={artwork.id} className="artwork-card" onClick={() => setSelectedImage(artwork.url)}>
+                  <div className="artwork-image-container">
+                    <img 
+                      src={artwork.url} 
+                      alt={artwork.name} 
+                      className="artwork-image"
+                    />
+                  </div>
+                  <div className="artwork-info">
+                    <p className="artwork-name"><span>Name:</span> {artwork.name}</p>
+                    <p className="artwork-technique"><span>Technique:</span> {artwork.technique}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Modal
         open={!!selectedImage}
         onClose={() => setSelectedImage(null)}
         className="image-modal"
       >
-        <div className="modal-content">
+        <div className="modal-content" onClick={() => setSelectedImage(null)}>
           <img
             src={selectedImage}
-            alt="Enlarged view"
-            onClick={() => setSelectedImage(null)}
+            alt="Enlarged creation"
           />
         </div>
       </Modal>
+
+      <Footer />
     </>
   );
 }
 
-export default Gallery; 
+export default Gallery;
