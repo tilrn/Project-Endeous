@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
 import { Modal, IconButton } from '@mui/material';
@@ -165,12 +166,22 @@ function Store() {
 
   return (
     <>
+      <Helmet>
+        <title>Store | Project Endeous - Shop Art & Merchandise</title>
+        <meta name="description" content="Shop unique art prints, merchandise, and creative products from Project Endeous. Support the artist and bring beautiful creations into your life." />
+        <meta name="keywords" content="art store, shop, merchandise, art prints, Project Endeous store, buy art, creative products" />
+        <link rel="canonical" href="https://projectendeous.com/store" />
+        <meta property="og:title" content="Store | Project Endeous - Shop Art & Merchandise" />
+        <meta property="og:description" content="Shop unique art prints, merchandise, and creative products from Project Endeous." />
+        <meta property="og:url" content="https://projectendeous.com/store" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <NavigationBar />
       {isLoading ? (
-        <div className="splash-screen">
+        <div className="splash-screen" role="status" aria-label="Loading store">
           <div className="splash-content">
             <h2>Loading Store...</h2>
-            <div className="loading-bar">
+            <div className="loading-bar" aria-hidden="true">
               <div 
                 className="loading-progress" 
                 style={{ width: `${(imagesLoaded / totalImages) * 100}%` }}
@@ -180,36 +191,42 @@ function Store() {
           </div>
         </div>
       ) : (
-        <div className="store-container">
+        <main className="store-container">
           {/* Store Title */}
-          <h2 className="store-title">Store</h2>
+          <h1 className="store-title">Store</h1>
 
           {/* Products Grid */}
-          <div className="products-grid">
+          <section className="products-grid" aria-label="Products">
             {products.map((product) => (
-              <div
+              <article
                 key={product.id}
                 className="product-card"
                 onClick={() => handleProductClick(product)}
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleProductClick(product)}
+                role="button"
+                aria-label={`View ${product.name} - ${product.price}`}
               >
                 <img
                   src={product.images[0]}
-                  alt={product.name}
+                  alt={`${product.name} - ${product.description}`}
                   className="product-image"
+                  loading="lazy"
                 />
                 <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
+                  <h2 className="product-name">{product.name}</h2>
                   <p className="product-price">{product.price}</p>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
+          </section>
 
           {/* Product Modal */}
           <Modal
             open={modalOpen}
             onClose={handleModalClose}
-            aria-labelledby="product-modal"
+            aria-labelledby="product-modal-title"
+            aria-describedby="product-modal-description"
           >
             <div className="product-modal">
               {selectedProduct && (
@@ -217,26 +234,28 @@ function Store() {
                   <div className="modal-image-container">
                     <img
                       src={selectedProduct.images[currentImageIndex]}
-                      alt={selectedProduct.name}
+                      alt={`${selectedProduct.name} - Image ${currentImageIndex + 1} of ${selectedProduct.images.length}`}
                       className="modal-image"
                     />
                     <IconButton
                       className="modal-nav-button prev"
                       onClick={handlePrevImage}
+                      aria-label="Previous image"
                     >
                       <ChevronLeft />
                     </IconButton>
                     <IconButton
                       className="modal-nav-button next"
                       onClick={handleNextImage}
+                      aria-label="Next image"
                     >
                       <ChevronRight />
                     </IconButton>
                   </div>
                   <div className="modal-product-info">
-                    <h2 className="modal-product-name">{selectedProduct.name}</h2>
+                    <h2 id="product-modal-title" className="modal-product-name">{selectedProduct.name}</h2>
                     <p className="modal-product-price">{selectedProduct.price}</p>
-                    <p className="modal-product-description">
+                    <p id="product-modal-description" className="modal-product-description">
                       {selectedProduct.description}
                     </p>
                   </div>
@@ -244,7 +263,7 @@ function Store() {
               )}
             </div>
           </Modal>
-        </div>
+        </main>
       )}
       <Footer />
     </>

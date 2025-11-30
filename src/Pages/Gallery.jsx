@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -38,12 +39,22 @@ function Gallery() {
 
   return (
     <>
+      <Helmet>
+        <title>Creations Gallery | Project Endeous Art Portfolio</title>
+        <meta name="description" content="Explore the creative gallery of Project Endeous. Browse original artworks including oil paintings, watercolors, digital art, and mixed media pieces. Each creation tells a unique story." />
+        <meta name="keywords" content="art gallery, creations, artwork, paintings, digital art, watercolor, oil painting, mixed media, Project Endeous gallery" />
+        <link rel="canonical" href="https://projectendeous.com/gallery" />
+        <meta property="og:title" content="Creations Gallery | Project Endeous Art Portfolio" />
+        <meta property="og:description" content="Explore the creative gallery of Project Endeous. Browse original artworks including oil paintings, watercolors, digital art, and mixed media pieces." />
+        <meta property="og:url" content="https://projectendeous.com/gallery" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <NavigationBar />
-      <div className="gallery-page-wrapper">
-        <div className="gallery-background">
+      <main className="gallery-page-wrapper">
+        <div className="gallery-background" aria-hidden="true">
           <img 
             src="/img/Background Creations.png" 
-            alt="Creations Background" 
+            alt="" 
             className="gallery-bg-image"
           />
         </div>
@@ -53,7 +64,7 @@ function Gallery() {
             <p>Explore my creative works</p>
           </div>
 
-          <div className="creations-carousel-container">
+          <section className="creations-carousel-container" aria-label="Featured creations carousel">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={30}
@@ -95,8 +106,9 @@ function Gallery() {
                 <div className="creation-slide-wrapper" onClick={() => setSelectedImage(image.url)}>
                   <img
                     src={image.url}
-                    alt={image.name}
+                    alt={`${image.name} - Original artwork by Project Endeous`}
                     className="creation-image"
+                    loading="lazy"
                   />
                   <div className="creation-overlay">
                     <span className="creation-name">{image.name}</span>
@@ -105,41 +117,43 @@ function Gallery() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </section>
 
           {/* Artworks Grid Section */}
-          <div className="artworks-section">
+          <section className="artworks-section" aria-label="Artwork gallery">
             <h2 className="artworks-title">Artwork Gallery</h2>
             <div className="artworks-grid">
               {artworks.map((artwork) => (
-                <div key={artwork.id} className="artwork-card" onClick={() => setSelectedImage(artwork.url)}>
+                <article key={artwork.id} className="artwork-card" onClick={() => setSelectedImage(artwork.url)}>
                   <div className="artwork-image-container">
                     <img 
                       src={artwork.url} 
-                      alt={artwork.name} 
+                      alt={`${artwork.name} - ${artwork.technique} artwork by Project Endeous`}
                       className="artwork-image"
+                      loading="lazy"
                     />
                   </div>
                   <div className="artwork-info">
                     <p className="artwork-name"><span>Name:</span> {artwork.name}</p>
                     <p className="artwork-technique"><span>Technique:</span> {artwork.technique}</p>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
 
       <Modal
         open={!!selectedImage}
         onClose={() => setSelectedImage(null)}
         className="image-modal"
+        aria-label="Enlarged artwork view"
       >
         <div className="modal-content" onClick={() => setSelectedImage(null)}>
           <img
             src={selectedImage}
-            alt="Enlarged creation"
+            alt="Enlarged artwork view"
           />
         </div>
       </Modal>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
 import "./MyStory.css";
@@ -6,19 +7,29 @@ import "./MyStory.css";
 const MyStory = () => { 
     return (
         <>
+            <Helmet>
+                <title>My Story | Project Endeous - The Journey Behind the Art</title>
+                <meta name="description" content="Discover the personal journey behind Project Endeous. A heartfelt story about finding meaning through art, overcoming hardships, and how music and creativity became a source of healing and inspiration." />
+                <meta name="keywords" content="my story, artist journey, Project Endeous story, inspiration, healing through art, personal journey, creative story" />
+                <link rel="canonical" href="https://projectendeous.com/mystory" />
+                <meta property="og:title" content="My Story | Project Endeous - The Journey Behind the Art" />
+                <meta property="og:description" content="Discover the personal journey behind Project Endeous. A heartfelt story about finding meaning through art and overcoming hardships." />
+                <meta property="og:url" content="https://projectendeous.com/mystory" />
+                <meta property="og:type" content="article" />
+            </Helmet>
             <NavigationBar />
-            <div className="container">
+            <main className="container">
                 <div className="wrapper">
-                    <section className="main">
+                    <article className="main">
                         <img 
                             src="/img/mystory.png" 
                             className="circle" 
-                            alt="Profile"
+                            alt="Project Endeous artist profile"
                         />
                         <p style={{ whiteSpace: 'pre-line' }}>{text}</p>
-                    </section>
+                    </article>
                 </div>
-            </div>
+            </main>
             <Footer />
         </>
     );

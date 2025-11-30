@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Container, TextField, Button, Box } from '@mui/material';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
@@ -14,12 +15,22 @@ function Contacts() {
 
   return (
     <>
+      <Helmet>
+        <title>Contact Us | Project Endeous - Get in Touch</title>
+        <meta name="description" content="Connect with Project Endeous. Reach out via social media, email, or send us a message directly. We'd love to hear from you and collaborate on creative projects." />
+        <meta name="keywords" content="contact, get in touch, Project Endeous, social media, email, collaboration, artist contact" />
+        <link rel="canonical" href="https://projectendeous.com/contacts" />
+        <meta property="og:title" content="Contact Us | Project Endeous - Get in Touch" />
+        <meta property="og:description" content="Connect with Project Endeous. Reach out via social media, email, or send us a message directly." />
+        <meta property="og:url" content="https://projectendeous.com/contacts" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <NavigationBar />
-      <div className="contacts-page-wrapper">
-        <div className="contacts-background">
+      <main className="contacts-page-wrapper">
+        <div className="contacts-background" aria-hidden="true">
           <img 
             src="/img/PE - Contact - Background.png" 
-            alt="Contact Background" 
+            alt="" 
             className="contacts-bg-image"
           />
         </div>
@@ -39,6 +50,7 @@ function Contacts() {
               type="checkbox"
               checked={showContactForm}
               onChange={handleToggle}
+              aria-label="Toggle between social links and contact form"
             />
             <span className="toggle-slider"></span>
           </label>
@@ -46,7 +58,7 @@ function Contacts() {
 
         <div className="content-container">
           {/* Connect With Me Section */}
-          <div
+          <section
             className="content-section"
             style={{
               transform: showContactForm ? 'translateX(100%)' : 'translateX(0)',
@@ -56,39 +68,40 @@ function Contacts() {
               position: 'absolute',
               width: '100%',
             }}
+            aria-hidden={showContactForm}
           >
             <Container maxWidth="md">
-              <div className="social-links-container">
+              <nav className="social-links-container" aria-label="Social media links">
                 <a href="https://ko-fi.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <img src="/img/Pe - Contact - Kofi.png" alt="Ko-fi" className="social-icon-img" />
+                  <img src="/img/Pe - Contact - Kofi.png" alt="" className="social-icon-img" />
                   <span>Buy me a coffee</span>
                 </a>
                 <a href="https://instagram.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <img src="/img/Pe - Contact - Insta.png" alt="Instagram" className="social-icon-img" />
+                  <img src="/img/Pe - Contact - Insta.png" alt="" className="social-icon-img" />
                   <span>Instagram</span>
                 </a>
                 <a href="https://youtube.com/@yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <img src="/img/Pe - Contact - Yt.png" alt="YouTube" className="social-icon-img" />
+                  <img src="/img/Pe - Contact - Yt.png" alt="" className="social-icon-img" />
                   <span>YouTube</span>
                 </a>
                 <a href="mailto:your.email@example.com" className="social-link">
-                  <img src="/img/Pe - Contact - Mail.png" alt="Email" className="social-icon-img" />
+                  <img src="/img/Pe - Contact - Mail.png" alt="" className="social-icon-img" />
                   <span>Email Me</span>
                 </a>
                 <a href="https://twitter.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaTwitter className="social-icon" />
+                  <FaTwitter className="social-icon" aria-hidden="true" />
                   <span>Twitter</span>
                 </a>
                 <a href="https://linkedin.com/in/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedinIn className="social-icon" />
+                  <FaLinkedinIn className="social-icon" aria-hidden="true" />
                   <span>LinkedIn</span>
                 </a>
-              </div>
+              </nav>
             </Container>
-          </div>
+          </section>
 
           {/* Contact Us Section */}
-          <div
+          <section
             className="content-section"
             style={{
               transform: showContactForm ? 'translateX(0)' : 'translateX(-100%)',
@@ -98,6 +111,7 @@ function Contacts() {
               position: 'absolute',
               width: '100%',
             }}
+            aria-hidden={!showContactForm}
           >
             <Container maxWidth="md">
               <div className="contact-form-wrapper">
@@ -116,6 +130,7 @@ function Contacts() {
                   label="Your Name"
                   placeholder="Enter your name"
                   variant="outlined"
+                  inputProps={{ 'aria-label': 'Your name' }}
                 />
                 <TextField
                   fullWidth
@@ -123,6 +138,7 @@ function Contacts() {
                   label="Email address"
                   placeholder="Enter your email"
                   variant="outlined"
+                  inputProps={{ 'aria-label': 'Email address' }}
                 />
                 <TextField
                   fullWidth
@@ -131,6 +147,7 @@ function Contacts() {
                   label="Message"
                   placeholder="Your message"
                   variant="outlined"
+                  inputProps={{ 'aria-label': 'Your message' }}
                 />
                 <Box sx={{ textAlign: 'center', mt: 2 }}>
                   <Button variant="contained" type="submit" size="large">
@@ -140,10 +157,10 @@ function Contacts() {
                 </Box>
               </div>
             </Container>
-          </div>
+          </section>
         </div>
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   );
