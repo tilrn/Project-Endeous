@@ -30,18 +30,27 @@ function Projects() {
         <meta property="og:type" content="website" />
       </Helmet>
       <NavigationBar />
-      <main 
-        className="video-container"
-        onMouseEnter={handleMouseEnter}
-      >
-        <iframe
-          src={videoSrc}
-          title="Project Endeous Purpose Video - Our Mission and Vision"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="video-frame"
-        ></iframe>
+      <main className="purpose-page-wrapper">
+        <div className="purpose-background" aria-hidden="true">
+          <img 
+            src="/img/BACKGROUND - Purposee_spletna-stran.png" 
+            alt="" 
+            className="purpose-bg-image"
+          />
+        </div>
+        <div 
+          className="video-container"
+          onMouseEnter={handleMouseEnter}
+        >
+          <iframe
+            src={videoSrc}
+            title="Project Endeous Purpose Video - Our Mission and Vision"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="video-frame"
+          ></iframe>
+        </div>
       </main>
       <Footer />
     </>
