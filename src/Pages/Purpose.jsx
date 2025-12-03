@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
 import './Purpose.css';
 
 function Projects() {
-  const [hasStarted, setHasStarted] = useState(false);
-
-  const handleMouseEnter = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
-    }
-  };
-
-  const videoSrc = hasStarted 
-    ? "https://www.youtube.com/embed/niWpfRyvs2U?autoplay=1&mute=0"
-    : "https://www.youtube.com/embed/niWpfRyvs2U?autoplay=0&mute=0";
-
   return (
     <>
       <Helmet>
@@ -38,15 +26,12 @@ function Projects() {
             className="purpose-bg-image"
           />
         </div>
-        <div 
-          className="video-container"
-          onMouseEnter={handleMouseEnter}
-        >
+        <div className="video-container">
           <iframe
-            src={videoSrc}
+            src="https://www.youtube.com/embed/niWpfRyvs2U"
             title="Project Endeous Purpose Video - Our Mission and Vision"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="video-frame"
           ></iframe>

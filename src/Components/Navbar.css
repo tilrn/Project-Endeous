@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'Matura MT Script Capitals';
+  src: local('Matura MT Script Capitals Regular'),
+       local('Matura MT Script Capitals'),
+       local('MATURASC.TTF');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Slick, minimal, modern navbar */
 .custom-navbar {
   width: 100vw;
@@ -53,12 +63,13 @@
 .nav-link {
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-family: 'Matura MT Script Capitals', cursive;
+  font-size: 1.4rem;
+  font-weight: normal;
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
   transition: background 0.18s, color 0.18s;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   display: inline-block;
   white-space: nowrap;
 }
@@ -71,8 +82,35 @@
 .active-link {
   background: transparent;
   color: #fff !important;
-  border-bottom: 2px solid #fff;
+  border-bottom: none;
   border-radius: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 3px;
+  background: linear-gradient(90deg, #ff69b4, #9b59b6, #00bfff, #9b59b6, #ff69b4);
+  background-size: 200% 100%;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #ff69b4, 0 0 15px #9b59b6, 0 0 20px #00bfff;
+  animation: magicShimmer 2s ease-in-out infinite;
+}
+
+@keyframes magicShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 8px #ff69b4, 0 0 15px #9b59b6, 0 0 20px #00bfff;
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 12px #00bfff, 0 0 20px #ff69b4, 0 0 25px #9b59b6;
+  }
 }
 
 /* Mobile Menu Toggle */
