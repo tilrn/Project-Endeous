@@ -236,7 +236,7 @@ input:checked + .toggle-slider:before {
   max-width: 500px;
   margin: 0 auto;
   padding-top: 0;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .social-link {
