@@ -1,5 +1,6 @@
 # Endeous
-<img width="1423" height="730" alt="image" src="https://github.com/user-attachments/assets/b8c34fbf-318f-45c3-9b13-a534f83684ad" />
+<img width="1429" height="680" alt="image" src="https://github.com/user-attachments/assets/948a6a4c-2e00-43f2-86b3-6dcddac7a8e5" />
+
 
 
 > *"Beauty will save the world"* — Fyodor Dostoevsky
@@ -44,3 +45,4 @@ npm run build
 ### Tech
 
 React 19 • Material UI • Framer Motion • React Router
+
