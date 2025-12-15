@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Endeous
+<img width="1423" height="730" alt="image" src="https://github.com/user-attachments/assets/b8c34fbf-318f-45c3-9b13-a534f83684ad" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+> *"Beauty will save the world"* — Fyodor Dostoevsky
 
-In the project directory, you can run:
+Endeous is a personal creative space exploring beauty, meaning, and the human experience through art, poetry, and storytelling.
 
-### `npm start`
+## What You'll Find
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**My Story** — A heartfelt journey through struggles, inspiration, and finding light in dark times. A reminder that little stars have a reason, and you are not your next thought.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Gallery** — An interactive photo gallery where images float freely. Drag them around, arrange your own composition, and click to view in full.
 
-### `npm test`
+**Store** — Browse and discover creations available for purchase.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Purpose** — A video exploring the deeper meaning behind this project.
 
-### `npm run build`
+**Creations** — A showcase of artistic works.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The Philosophy
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Born from personal experience and the healing power of art, Endeous is a voice for those searching for meaning in uncertainty. It's about finding beauty in both pain and joy — forever dancing through life's ever-changing flow.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## For Developers
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Quick Start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Opens at [http://localhost:3000](http://localhost:3000)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Build
 
-## Learn More
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Tech
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+React 19 • Material UI • Framer Motion • React Router
