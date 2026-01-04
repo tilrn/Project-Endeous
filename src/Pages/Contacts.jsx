@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Container, TextField, Button, Box } from '@mui/material';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
-import { FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import './Contacts.css';
 
 function Contacts() {
@@ -74,27 +73,19 @@ function Contacts() {
               <nav className="social-links-container" aria-label="Social media links">
                 <a href="https://ko-fi.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <img src="/img/Pe - Contact - Kofi.png" alt="" className="social-icon-img" />
-                  <span>Buy me a coffee</span>
+                  <span>get-me-a-kofi :)</span>
                 </a>
                 <a href="https://instagram.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <img src="/img/Pe - Contact - Insta.png" alt="" className="social-icon-img" />
-                  <span>Instagram</span>
+                  <span>project-endeous</span>
                 </a>
                 <a href="https://youtube.com/@yourname" className="social-link" target="_blank" rel="noopener noreferrer">
                   <img src="/img/Pe - Contact - Yt.png" alt="" className="social-icon-img" />
-                  <span>YouTube</span>
+                  <span>project endeous</span>
                 </a>
-                <a href="mailto:your.email@example.com" className="social-link">
+                <a href="mailto:info@project-endeous.com" className="social-link">
                   <img src="/img/Pe - Contact - Mail.png" alt="" className="social-icon-img" />
-                  <span>Email Me</span>
-                </a>
-                <a href="https://twitter.com/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaTwitter className="social-icon" aria-hidden="true" />
-                  <span>Twitter</span>
-                </a>
-                <a href="https://linkedin.com/in/yourname" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedinIn className="social-icon" aria-hidden="true" />
-                  <span>LinkedIn</span>
+                  <span>info@project-endeous.com</span>
                 </a>
               </nav>
             </Container>

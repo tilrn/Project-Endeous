@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import NavigationBar from '../Components/NavigationBar';
 import Footer from '../Components/Footer';
 import './Purpose.css';
 
 function Projects() {
-  const [hasStarted, setHasStarted] = useState(false);
-
-  const handleMouseEnter = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
-    }
-  };
-
-  const videoSrc = hasStarted 
-    ? "https://www.youtube.com/embed/niWpfRyvs2U?autoplay=1&mute=0"
-    : "https://www.youtube.com/embed/niWpfRyvs2U?autoplay=0&mute=0";
-
   return (
     <>
       <Helmet>
@@ -30,18 +18,24 @@ function Projects() {
         <meta property="og:type" content="website" />
       </Helmet>
       <NavigationBar />
-      <main 
-        className="video-container"
-        onMouseEnter={handleMouseEnter}
-      >
-        <iframe
-          src={videoSrc}
-          title="Project Endeous Purpose Video - Our Mission and Vision"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="video-frame"
-        ></iframe>
+      <main className="purpose-page-wrapper">
+        <div className="purpose-background" aria-hidden="true">
+          <img 
+            src="/img/BACKGROUND - Purposee_spletna-stran.png" 
+            alt="" 
+            className="purpose-bg-image"
+          />
+        </div>
+        <div className="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/niWpfRyvs2U"
+            title="Project Endeous Purpose Video - Our Mission and Vision"
+            frameBorder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="video-frame"
+          ></iframe>
+        </div>
       </main>
       <Footer />
     </>
