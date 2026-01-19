@@ -1,18 +1,15 @@
 @font-face {
-  font-family: 'Perpetua Titling MT';
-  src: local('Perpetua Titling MT Bold'),
-       local('PerpetuaTitlingMT-Bold'),
-       local('PERPTB.TTF');
+  font-family: "Perpetua Titling MT";
+  src: local("Perpetua Titling MT Bold"), local("PerpetuaTitlingMT-Bold"),
+    local("PERPTB.TTF");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'MV Boli';
-  src: local('MV Boli'),
-       local('MVBoli'),
-       local('MVBOLI.TTF');
+  font-family: "MV Boli";
+  src: local("MV Boli"), local("MVBoli"), local("MVBOLI.TTF");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -59,38 +56,38 @@
 
 .quote-container {
   position: relative;
-  left: 15%;
-  max-width: 400px;
+  left: 10%;
+  max-width: 40%;
   text-align: left;
   pointer-events: auto;
-  background: rgba(255, 255, 255, 0.9);
+
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .main-quote {
   font-size: 36px;
   font-weight: bold;
   margin: 0 0 20px 0;
-  font-family: 'Perpetua Titling MT', 'Perpetua', serif;
-  color: #333;
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: black;
 }
 
 .quote-author {
   margin-bottom: 30px;
   font-size: 18px;
-  font-family: 'Perpetua Titling MT', 'Perpetua', serif;
+  font-family: "Lucida Console", "Courier New", monospace;
   font-weight: bold;
-  color: #666;
+  color: #0e0c12;
 }
 
 .poem-text {
   font-style: normal;
   line-height: 1.2;
-  font-size: 24pt;
-  font-family: 'MV Boli', sans-serif;
-  color: #444;
+  font-size: 20pt;
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: #0e0c12;
+  font-weight: bold;
 }
 
 @media (max-width: 1200px) {
@@ -174,4 +171,4 @@
     font-size: 14pt;
     line-height: 1.3;
   }
-} 
+}
